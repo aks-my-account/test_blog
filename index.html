@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Blog</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header styles */
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #444;
+        }
+
+        .navbar a {
+            color: #fff;
+            padding: 14px 20px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        /* Main content styles */
+        .main-content {
+            margin: 20px 0;
+        }
+
+        /* New post form styles */
+        .new-post {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .new-post h2 {
+            margin-top: 0;
+        }
+
+        .new-post form label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .new-post form input,
+        .new-post form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        .new-post form button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .new-post form button:hover {
+            background-color: #555;
+        }
+
+        /* Blog post styles */
+        .blog-posts {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+
+        .blog-posts h2 {
+            margin-top: 0;
+        }
+
+        .post {
+            margin-bottom: 20px;
+        }
+
+        .post h3 {
+            margin: 0;
+        }
+
+        .post .date {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .post .photo,
+        .post .video,
+        .post .animation {
+            margin-top: 10px;
+            max-width: 100%;
+        }
+
+        /* Footer styles */
+        .footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 600px) {
+            .container {
+                padding: 10px;
+            }
+
+            .navbar {
+                flex-direction: column;
+            }
+
+            .navbar a {
+                padding: 10px;
+            }
+
+            .new-post,
+            .blog-posts {
+                padding: 15px;
+            }
+        }
+
+        @media (min-width: 601px) and (max-width: 1200px) {
+            .container {
+                padding: 15px;
+            }
+
+            .new-post,
+            .blog-posts {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>IT Blog</h1>
+        </header>
+        <nav class="navbar">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+        <main class="main-content">
+            <section class="new-post">
+                <h2>New Blog Post</h2>
+                <form id="blog-form">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                    
+                    <label for="date">Date:</label>
+                    <input type="date" id="date" name="date" required>
+                    
+                    <label for="topic">Topic:</label>
+                    <input type="text" id="topic" name="topic" required>
+                    
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" required></textarea>
+                    
+                    <label for="photo">Photo URL:</label>
+                    <input type="url" id="photo" name="photo">
+                    
+                    <label for="video">Video URL:</label>
+                    <input type="url" id="video" name="video">
+                    
+                    <label for="animation">Animation URL:</label>
+                    <input type="url" id="animation" name="animation">
+                    
+                    <button type="submit">Post Blog</button>
+                </form>
+            </section>
+            <section class="blog-posts" id="blog-posts">
+                <h2>Blog Posts</h2>
+                <!-- Blog posts will be appended here -->
+            </section>
+        </main>
+        <footer class="footer">
+            <p>&copy; 2025 IT Blog. All rights reserved.</p>
+        </footer>
+    </div>
+    <script>
+        document.getElementById('blog-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const title = document.getElementById('title').value;
+            const date = document.getElementById('date').value;
+            const topic = document.getElementById('topic').value;
+            const description = document.getElementById('description').value;
+            const photo = document.getElementById('photo').value;
+            const video = document.getElementById('video').value;
+            const animation = document.getElementById('animation').value;
+            
+            // Create new blog post element
+            const post = document.createElement('div');
+            post.classList.add('post');
+            
+            post.innerHTML = `
+                <h3>${title}</h3>
+                <p class="date">Posted on ${date}</p>
+                <p><strong>Topic:</strong> ${topic}</p>
+                <p>${description}</p>
+                ${photo ? `<img src="${photo}" alt="Photo" class="photo">` : ''}
+                ${video ? `<iframe src="${video}" frameborder="0" class="video" allowfullscreen></iframe>` : ''}
+                ${animation ? `<iframe src="${animation}" frameborder="0" class="animation" allowfullscreen></iframe>` : ''}
+            `;
+            
+            // Append the new post to the blog posts section
+            document.getElementById('blog-posts').appendChild(post);
+            
+            // Reset form
+            document.getElementById('blog-form').reset();
+        });
+    </script>
+</body>
+</html>
